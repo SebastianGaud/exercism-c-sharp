@@ -20,7 +20,7 @@ public static class PerfectNumbers
 }
 
 
-
+// more object oriented approach
 public class NumberClassification
 {
     private readonly int _n;
@@ -57,6 +57,9 @@ public static class PefectNumbersExtension
             if (n % i == 0) yield return i;
     }
 
+
+
+    // Very very function approach
     public static int SumDivisor(this int n)
         => Enumerable.Range(1, n <= 0 ? throw new ArgumentOutOfRangeException() : n).Aggregate((number, acc) => { 
             return n % number == 0 ? acc += n : acc += 0;
