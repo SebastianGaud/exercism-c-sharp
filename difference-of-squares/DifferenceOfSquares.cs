@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public static class DifferenceOfSquares
 {
-    private const double Pow = 2;
+
     public static int CalculateSquareOfSum(int max)
     {
         return max.SelectResultFrom(
             1, 
-            @do: (list) => Math.Pow(list.Sum(), Pow)
+            @do: (list) => DifferenceOfSquaresExtension.PowByTwo(list.Sum())
         );  
         
         //return (int)Math.Pow(Enumerable.Range(1, max).Sum(), Pow);
@@ -19,7 +19,7 @@ public static class DifferenceOfSquares
     {
         return max.SelectResultFrom(
             1,
-            @do: (list) => list.Select(x => Math.Pow(x, Pow)).Sum()
+            @do: (list) => list.Select(DifferenceOfSquaresExtension.PowByTwo).Sum()
         );
         
         //return (int)Enumerable.Range(1, max).Select(x => Math.Pow(x, Pow)).Sum();
@@ -34,9 +34,11 @@ public static class DifferenceOfSquares
 
 public static class DifferenceOfSquaresExtension 
 {
+    private const double Pow = 2;
+
     public static int SelectResultFrom(this int to, int from, Func<IEnumerable<int>, double> @do){
         return (int)@do(Enumerable.Range(from, to));
     }
 
-
+    public static int PowByTwo(int baseNumber) => (int)Math.Pow(baseNumber, Pow); // baseNumber * baseNumber
 }
