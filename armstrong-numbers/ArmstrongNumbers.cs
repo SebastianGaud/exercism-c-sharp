@@ -14,16 +14,11 @@ public static class ArmstrongNumbers
         var powArr = GetArrayWithDigitsPow(digits);
 
         // sommare le potenze delle cifre
-        var sum = SumArray(powArr);
+        var sum = powArr.Sum();
 
         // confrontare la potenza con il numero originale
         bool isSameNumber = number == sum;
         return isSameNumber;
-    }
-
-    public static int SumArray(IEnumerable<int> arr)
-    {
-        return arr.Sum();
     }
 
     public static IEnumerable<int> GetDigitFromNumber(int num)
