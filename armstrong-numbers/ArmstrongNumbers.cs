@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 /*
@@ -23,13 +24,11 @@ public static class ArmstrongNumbers
 {
     public static bool IsArmstrongNumber(int number)
     {
-        // un modo per determinare la potenza
-        var pow = number.ToString().Length;
-
+        // get digits from number
         var digits = GetDigitFromNumber(number);
 
         // fare la potenza delle cifre
-        var powArr = GetArrayWithDigitsPow(digits, pow);
+        var powArr = GetArrayWithDigitsPow(digits);
 
         // sommare le potenze delle cifre
         var sum = SumArray(powArr);
@@ -67,10 +66,13 @@ public static class ArmstrongNumbers
         return listNum;
     }
 
-    public static IEnumerable<int> GetArrayWithDigitsPow(IEnumerable<int> arrNum, int pow)
+    public static IEnumerable<int> GetArrayWithDigitsPow(IEnumerable<int> arrNum)
     {
         // immagazzinare all'interno di un array le potenze
         var list = new List<int>();
+
+        // un modo per calcolare la potenza
+        var pow = arrNum.ToArray().Length;
 
         foreach (var item in arrNum)
         {
