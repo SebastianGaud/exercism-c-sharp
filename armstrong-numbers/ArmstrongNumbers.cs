@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 /*
@@ -23,8 +24,7 @@ public static class ArmstrongNumbers
     public static bool IsArmstrongNumber(int number)
     {
         // un modo per determinare la potenza
-        var sNum = number.ToString();
-        var pow = sNum.Length;
+        var pow = number.ToString().Length;
 
         var digits = GetDigitFromNumber(number);
 
@@ -35,57 +35,48 @@ public static class ArmstrongNumbers
         var sum = SumArray(powArr);
 
         // confrontare la potenza con il numero originale
-        // var isSameNumber = number == sum;
-        // return isSameNumber;
-
-        if (number == sum)
-        {
-            return true;
-        }
-        else {
-            return false;
-        }
+        bool isSameNumber = number == sum;
+        return isSameNumber;
     }
 
 
-    public static int SumArray(int[] arr)
+    public static int SumArray(IEnumerable<int> arr)
     {
         int sum = 0;
-        for (int i = 0; i < arr.Length; i++)
+        foreach (var item in arr)
         {
-            sum = sum + arr[i];
+            sum += item;
         }
         return sum;
     }
 
 
-    public static int[] GetDigitFromNumber(int num)
+    public static IEnumerable<int> GetDigitFromNumber(int num)
     {
         // estrapolare dal numero le cifre es: n° 153 -> 1 - 5 - 3
         var stringNum = num.ToString();
 
         // una lista on array dove inserire tutte le cifre
-        int[] arrNum = new int[stringNum.Length];
+        var listNum = new List<int>();
 
-        for (int i = 0; i < stringNum.Length; i++)
+        foreach (var item in stringNum)
         {
-            arrNum[i] = int.Parse(stringNum[i].ToString());
+            listNum.Add(int.Parse(item.ToString()));
         }
 
-        return arrNum;
+        return listNum;
     }
 
-    public static int[] GetArrayWithDigitsPow(int[] arrNum, int pow)
+    public static IEnumerable<int> GetArrayWithDigitsPow(IEnumerable<int> arrNum, int pow)
     {
         // immagazzinare all'interno di un array le potenze
-        int[] powNums = new int[arrNum.Length];
+        var list = new List<int>();
 
-        // fare la potenza delle cifre all'interno dell'array
-        for (int i = 0; i < arrNum.Length; i++)
+        foreach (var item in arrNum)
         {
-            powNums[i] = (int)Math.Pow(arrNum[i], pow);
+            list.Add((int)Math.Pow(item, pow));
         }
 
-        return powNums;
+        return list;
     }
 }
