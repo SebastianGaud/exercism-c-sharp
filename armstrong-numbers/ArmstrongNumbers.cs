@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-
 public static class ArmstrongNumbers
 {
     public static bool IsArmstrongNumber(int number) =>
